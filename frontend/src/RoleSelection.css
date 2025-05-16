@@ -1,0 +1,104 @@
+.role-selection-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: 'Roboto', Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .role-selection-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .role-selection-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+  
+  .role-selection-header p {
+    font-size: 1.2rem;
+    color: #666;
+  }
+  
+  .role-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+  
+  .role-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .role-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+  
+  .role-icon {
+    width: 80px;
+    height: 80px;
+    background-color: #f0f7ff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+  }
+  
+  .role-card:nth-child(1) .role-icon {
+    background-color: #e3f2fd;
+    color: #2196f3;
+  }
+  
+  .role-card:nth-child(2) .role-icon {
+    background-color: #e8f5e9;
+    color: #9c27b0;
+  }
+  
+  .role-card:nth-child(3) .role-icon {
+    background-color: #fff3e0;
+    color: #ff9800;
+  }
+  
+  .role-card:nth-child(4) .role-icon {
+    background-color: #f3e5f5;
+    color: #4caf50;
+  }
+  
+  .role-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+    color: #333;
+  }
+  
+  .role-card p {
+    font-size: 1rem;
+    color: #666;
+  }
+  
+  /* Add this to show the current role in the header */
+  .role-indicator {
+    font-weight: 500;
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    margin-left: 0.5rem;
+  }
+  
+  /* Update any existing styles for the home button */
+  .home-button {
+    margin-bottom: 2rem;
+  }

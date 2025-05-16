@@ -1,0 +1,63 @@
+.approved-activities-container {
+  display: flex;
+  height: 100vh;
+  background-color: #f4f6f9;
+}
+
+.content {
+  padding: 30px;
+  background-color: #f4f6f9;
+  overflow-y: auto;
+}
+
+.approved-activities-table-container {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    overflow-x: auto;
+  }
+
+.approved-activities-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.approved-activities-table th {
+  background-color: #f1f3f6;
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #e0e4e8;
+}
+
+.approved-activities-table td {
+  padding: 12px;
+  border-bottom: 1px solid #e0e4e8;
+
+}.view-button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    margin-right: 20px;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .view-button:hover {
+    background-color: #2980b9;
+  }
+
+.request-approval-button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .request-approval-button:hover {
+    background-color: #2980b9;
+  }

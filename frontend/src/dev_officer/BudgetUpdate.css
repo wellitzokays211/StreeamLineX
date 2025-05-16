@@ -1,0 +1,132 @@
+/* BudgetUpdate.css */
+.budget-update-container {
+    display: flex;
+    height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .back-nav {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .budget-update-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .budget-update-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  h2 {
+    color: #444;
+    font-weight: normal;
+  }
+  
+  h3 {
+    color: #555;
+    font-weight: normal;
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+  
+  .current-budget {
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+  
+  .form-group {
+    width: 100%;
+    margin-bottom: 25px;
+  }
+  
+  label {
+    display: block;
+    color: #555;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .input-group {
+    display: flex;
+    position: relative;
+    width: 100%;
+  }
+  
+  .input-prefix {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #555;
+  }
+  
+  .budget-input {
+    width: 100%;
+    padding: 12px 15px 12px 50px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    font-size: 16px;
+    outline: none;
+  }
+  
+  .budget-input:focus {
+    border-color: #6c7ae0;
+  }
+  
+  .form-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+  }
+  
+  .submit-button, .cancel-button {
+    padding: 10px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .submit-button {
+    background-color: #5067db;
+    color: white;
+  }
+  
+  .submit-button:hover {
+    background-color: #4258c9;
+  }
+  
+  .cancel-button {
+    background-color: #e74c3c;
+    color: white;
+  }
+  
+  .cancel-button:hover {
+    background-color: #d44637;
+  }
+  
+  @media (max-width: 768px) {
+    .budget-update-card {
+      padding: 20px;
+    }
+    
+    .form-actions {
+      flex-direction: column;
+      width: 100%;
+    }
+    
+    .submit-button, .cancel-button {
+      width: 100%;
+    }
+  }

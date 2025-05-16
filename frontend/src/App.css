@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.App {
+  height: 100vh;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px; /* Increased gap for more space */
+  margin-right: 32px;
+}
+
+.header-right > * {
+  margin-left: 20px; /* Add left margin to each icon for extra separation */
+}
+
+/* If you have a header or navbar, ensure it uses flex to space left and right */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+}
+
+/* Optional: Add specific styles for icons if needed */
+.header-right .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

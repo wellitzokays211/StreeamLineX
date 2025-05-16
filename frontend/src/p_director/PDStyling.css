@@ -1,0 +1,213 @@
+/*Stylings for Provincial Director Window*/
+
+.sidebar.provincial-director {
+  background-color: #E7AE28; 
+}
+.header.provincial-director {
+  background-color: #E7AE28;
+  color: white;
+}
+
+.header.sidebar.provincial-director {
+  background-color: #E7AE28;
+  color: white;
+}
+
+.btn-primary {
+  background-color: #E7AE28;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #c99924;
+}
+
+.btn-secondary {
+  background-color: #fdf7e8;
+  color: #E7AE28;
+}
+
+.btn-secondary:hover {
+  background-color: #faecc4;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #E7AE28;
+}
+
+.tab.active {
+  border-bottom: 2px solid #E7AE28;
+  color: #E7AE28;
+}
+
+.profile-edit-btn {
+  background-color: #E7AE28;
+  color: white;
+  padding: 8px 25px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.profile-edit-btn.pd:hover {
+  background-color: #c99924;
+}
+
+/* Status panel styling with PD theme */
+.status-panel.pd {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 20px;
+  background-color: rgba(231, 174, 40, 0.1);
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.status-icon.pd {
+  font-style: normal;
+  color: #E7AE28;
+  font-size: 14px;
+}
+
+/* Action buttons PD styling */
+.action-buttons .btn-primary.pd {
+  background-color: #E7AE28;
+  color: white;
+}
+
+.action-buttons .btn-primary.pd:hover {
+  background-color: #c99924;
+}
+
+.action-card.pd-highlight {
+  background-color: #fdf7e8;
+}
+
+.action-button.pd-highlight {
+  color: #333;
+}
+
+.view-button.pd {
+  background-color: #fdf7e8;
+  border: none;
+  border-radius: 5px;
+  padding: 6px 15px;
+  color: #E7AE28;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.view-button.pd:hover {
+  background-color: #faecc4;
+}
+
+.status-panel.pd {
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 5px;
+  margin-bottom: 30px;
+  font-size: 16px;
+  padding: 10px;
+  background: white;
+}
+
+.status-label{
+  font-size: 16px;
+}
+
+/* PDViewActivity Stylling */
+
+.status-panel.pd{ 
+  margin-bottom: 30px;
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.status-label{
+  font-weight: bold;
+  font-size: 16px;
+  padding: 2px 10px;
+}
+
+.status-value{
+  font-weight: bold;
+}
+
+.card{
+margin-bottom: 20px;
+  background-color: white;
+  padding: 10px;
+}
+
+.btn-primary{
+  padding: 12px 20px;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-secondary{
+  background-color: #eed5c5;
+  padding: 12px 20px;
+  border-radius: 10px;
+  border: none;
+  color: #333;
+  font-weight: bold;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.button-secondary:hover{
+  background-color: #c3a99a;
+}
+
+.h2{
+  margin-bottom: 20px;
+}
+
+.form-group{
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.form-input{
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.btn-give-revisions{
+  background-color: #4a90e2;
+  padding: 12px 20px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-give-revisions:hover{
+  background-color: #3a73b5;
+}
+
+.btn-cancel-revisions{
+  background-color: #e74c3c;
+  padding: 12px 20px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-cancel-revisions:hover{
+  background-color: #c0392b;
+}

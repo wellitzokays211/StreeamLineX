@@ -1,0 +1,96 @@
+/* RequestApproval.css */
+
+.approval-header {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  .activity-id {
+    margin: 15px 0;
+    font-size: 22px;
+    color: #555;
+  }
+  
+  .activity-details-card {
+    padding: 25px;
+    border-radius: 8px;
+  }
+  
+  .activity-details-grid {
+    display: grid;
+    grid-gap: 15px;
+  }
+  
+  .detail-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    align-items: center;
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 12px;
+  }
+  
+  .detail-label {
+    font-weight: 500;
+    color: #666;
+  }
+  
+  .detail-value {
+    background-color: #f5f5f5;
+    padding: 10px 15px;
+    border-radius: 4px;
+  }
+  
+  .site-images {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .image-placeholder {
+    width: 60px;
+    height: 60px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+  }
+  
+  .approval-section {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .approval-status {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .status-label {
+    font-weight: 500;
+    color: #666;
+  }
+  
+  .status-value {
+    color: #f39c12;
+    font-weight: bold;
+  }
+  
+  .submit-approval-btn {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 12px 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .submit-approval-btn:hover {
+    background-color: #c0392b;
+  }
