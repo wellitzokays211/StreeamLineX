@@ -60,26 +60,40 @@ const PdDashboard = ({
     { id: 'AC004', description: 'Computer Lab Renovation of ABC M.V.', date: 'April-24' }
   ]);
 
+  const spentBudget = 1200000; // Example value, replace with real data
+  const spentPercent = Math.min(100, (spentBudget / budget) * 100);
+  const remainingPercent = 100 - spentPercent;
+
   return (  
     <div className="content">
       <h1>Dashboard</h1>
           
-      <div className="stats-row">
-        <div className="stat-card">
-          <div className="stat-content">
-            <div>
-              <div className="stat-title">Estimated Annual Budget</div>
-              <div className="stat-value">
-              Rs. {formatCurrency(budget)}
-              </div>
+      <div className="stats-row" style={{ gap: 10 }}>
+        <div className="stat-card" style={{ flex: 1.5, minWidth: 350, marginRight: 10 }}>
+          <div className="stat-title" style={{ fontWeight: 600, marginBottom: 8 }}>Estimated Annual Budget</div>
+          <div className="budget-bar-container" style={{ width: '100%', margin: '10px 0 8px 0' }}>
+            <div style={{ width: '100%', height: 18, background: '#e0e0e0', borderRadius: 10, overflow: 'hidden', position: 'relative' }}>
+              <div style={{ width: `${spentPercent}%`, height: '100%', background: '#E7AE28', borderRadius: '10px 0 0 10px', transition: 'width 0.4s', position: 'absolute', left: 0, top: 0 }}></div>
+              <div style={{ width: `${remainingPercent}%`, height: '100%', background: '#f9e7b1', borderRadius: '0 10px 10px 0', transition: 'width 0.4s', position: 'absolute', left: `${spentPercent}%`, top: 0 }}></div>
             </div>
-            <div className="stat-icon budget-icon">
-              <BudgetIcon />
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13, color: '#666', marginTop: 2 }}>
+              <span>Spent</span>
+              <span>Remaining</span>
             </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 600, fontSize: 14, color: '#333' }}>
+              <span>Rs. {formatCurrency(spentBudget)}</span>
+              <span>Rs. {formatCurrency(budget - spentBudget)}</span>
+            </div>
+          </div>
+          <div className="stat-value" style={{ fontSize: 22, fontWeight: 700, marginBottom: 0, marginTop: 8 }}>
+            Rs. {formatCurrency(budget)}
+          </div>
+          <div className="stat-icon budget-icon" style={{ marginTop: 8 }}>
+            <BudgetIcon />
           </div>
         </div>
           
-        <div className="stat-card" onClick={onViewApprovedActivities} style={{ cursor: 'pointer' }}>
+        <div className="stat-card" onClick={onViewApprovedActivities} style={{ cursor: 'pointer', flex: 0.7, minWidth: 160, marginRight: 10 }}>
           <div className="stat-content">
             <div>
               <div className="stat-title">Approved</div>
@@ -91,7 +105,7 @@ const PdDashboard = ({
           </div>
         </div>
           
-        <div className="stat-card" onClick={onViewPendingActivities} style={{ cursor: 'pointer' }}>
+        <div className="stat-card" onClick={onViewPendingActivities} style={{ cursor: 'pointer', flex: 0.7, minWidth: 160 }}>
           <div className="stat-content">
             <div>
               <div className="stat-title">Pending</div>
@@ -105,14 +119,14 @@ const PdDashboard = ({
       </div>
           
       <div className="actions-row">
-        <div className="action-card">
+        <div className="action-card" style={{ flex: 1.5, minWidth: 350, marginRight: 20 }}>
           <button className="action-button" >
             <span>View Annual Development Plan</span>
             <PlanIcon />
           </button>
         </div>
             
-        <div className="action-card pd-highlight" onClick={onViewRecievedActivities} style={{ cursor: 'pointer' }}>
+        <div className="action-card pd-highlight" onClick={onViewRecievedActivities} style={{ cursor: 'pointer', flex: 0.7, minWidth: 160 }}>
           <button className="action-button pd-highlight" >
             <span>Received Activities</span>
             <ReceivedIcon />

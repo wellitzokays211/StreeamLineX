@@ -19,7 +19,9 @@ const SeActivityList = ({ onBack, onViewActivity, activities = [] }) => {
 
   return (
     <div className="content">
-      <BackButton onClick={onBack} text="Back" />
+      <div style={{ display: 'flex', justifyContent: 'flex-start', marginBottom: 24 }}>
+        <BackButton onClick={onBack} text="Back" />
+      </div>
       <h1>My Activities</h1>
       
       <div className="activities-section">

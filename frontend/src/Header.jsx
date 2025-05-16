@@ -33,15 +33,18 @@ export const Sidebar = ({ onHomeClick, currentRole, onViewFromResponsiblePerson,
       )}
       {/* Logout link visible for all roles */}
       <div style={{ position: 'absolute', bottom: 30, left: 0, width: '100%', textAlign: 'center' }}>
-        <span className="sidebar-link logout-link" onClick={onLogout} style={{ cursor: 'pointer', color: '#fff', fontWeight: 'bold', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-          {/* Logout icon (simple door/arrow icon) */}
+        <button
+          className={`sidebar-logout-btn ${currentRole}`}
+          onClick={onLogout}
+          style={{ fontWeight: 'bold', display: 'inline-flex', alignItems: 'center', gap: '8px', justifyContent: 'center', width: '90%', border: 'none' }}
+        >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ verticalAlign: 'middle' }}>
             <path d="M16 17L21 12L16 7" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             <path d="M21 12H9" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             <path d="M12 19V17C12 15.8954 11.1046 15 10 15H5C3.89543 15 3 15.8954 3 17V19C3 20.1046 3.89543 21 5 21H10C11.1046 21 12 20.1046 12 19Z" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
           Logout
-        </span>
+        </button>
       </div>
     </div>
   );

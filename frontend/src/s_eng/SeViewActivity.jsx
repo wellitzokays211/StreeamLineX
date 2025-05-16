@@ -5,15 +5,6 @@ import { BackButton } from '../Header'; // Import the reusable BackButton
 import React from 'react';
 
 const SeViewActivity = ({ activity, onBack, onSetBudget, onSetPriority, onSetStatus }) => {
-  // Handle null activity case with a loading state
-  if (!activity) {
-    return (
-      <div className="content">
-        <BackButton onClick={onBack} text="Back" />
-        <h1>Loading activity details...</h1>
-      </div>
-    );
-  }
 
   // Function to get the appropriate CSS class for status badge
   const getStatusClass = (status) => {
@@ -44,11 +35,6 @@ const SeViewActivity = ({ activity, onBack, onSetBudget, onSetPriority, onSetSta
         <div className="activity-detail-row">
           <div className="detail-label">District:</div>
           <div className="detail-value">{activity.district || "Kandy"}</div>
-        </div>
-
-        <div className="activity-detail-row">
-          <div className="detail-label">Broad Activity Area:</div>
-          <div className="detail-value">{activity.broadActivityArea || "Construct School Buildings"}</div>
         </div>
 
         <div className="activity-detail-row">

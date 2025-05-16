@@ -352,6 +352,14 @@ color: white;
 background-color: #d62c1a;
 }
 
+.sidebar-logout-btn.responsible-person {
+  background: #4E993F;
+  color: #fff;
+}
+.sidebar-logout-btn.responsible-person:hover {
+  background: #428335;
+}
+
 @media (max-width: 768px) {
 .stats-row {
   flex-direction: column;

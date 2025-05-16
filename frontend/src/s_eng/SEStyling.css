@@ -141,14 +141,30 @@
 .back-button {
   display: inline-flex;
   align-items: center;
-  color: #666;
-  cursor: pointer;
+  background: #fff;
+  border: none;
+  border-radius: 32px;
+  box-shadow: 0 2px 8px rgba(44, 62, 80, 0.08);
+  padding: 16px 32px 16px 20px;
+  font-size: 1.1rem;
   font-weight: 500;
-  margin-bottom: 1rem;
+  color: #222;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+  margin-bottom: 0;
+  margin-top: 24px;
+  outline: none;
+}
+
+.back-button:hover {
+  box-shadow: 0 4px 16px rgba(44, 62, 80, 0.16);
+  background: #f5f6fa;
 }
 
 .back-button svg {
-  margin-right: 0.5rem;
+  margin-right: 12px;
+  font-size: 1.2em;
+  color: #222;
 }
 
 .content {
@@ -690,4 +706,12 @@
   cursor: pointer;
   font-size: 16px;
   margin-top: 20px;
+}
+
+.sidebar-logout-btn.site-engineer {
+  background: #A23DB3;
+  color: #fff;
+}
+.sidebar-logout-btn.site-engineer:hover {
+  background: #853194;
 }

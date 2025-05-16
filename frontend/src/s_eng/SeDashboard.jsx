@@ -3,11 +3,18 @@ import './SEStyling.css';
 import React, { useState } from 'react';
 
 import { BackButton } from '../Header';
+import SeBudgetSetting from './SeBudgetSetting';
+import SePrioritySettings from './SePrioritySettings';
+import SeSetStatus from './SeSetStatus';
 
 const SeDashboard = ({ onBack }) => {
   // State for view management
   const [currentView, setCurrentView] = useState('dashboard');
   const [selectedActivity, setSelectedActivity] = useState(null);
+  const [showBudgetSetting, setShowBudgetSetting] = useState(false);
+  const [showPrioritySetting, setShowPrioritySetting] = useState(false);
+  const [showSetStatus, setShowSetStatus] = useState(false);
+  const [currentBudget, setCurrentBudget] = useState(1000000); // Example default, replace as needed
   
   // Sample data state
   const [assignedActivities, setAssignedActivities] = useState([
@@ -73,21 +80,54 @@ const SeDashboard = ({ onBack }) => {
   };
 
   const handleSetBudget = () => {
-    alert(`Budget set for ${selectedActivity.id}`);
+    setShowBudgetSetting(true);
+    setCurrentView('set-budget');
   };
 
   const handleSetPriority = () => {
-    alert(`Priority set for ${selectedActivity.id}`);
+    setShowPrioritySetting(true);
+    setCurrentView('set-priority');
   };
 
   const handleSetStatus = () => {
-    const updatedActivities = myActivities.map(a => 
-      a.id === selectedActivity.id ? { ...a, status: 'inspected' } : a
-    );
-    setMyActivities(updatedActivities);
-    setInspectedCount(inspectedCount + 1);
-    setNotInspectedCount(notInspectedCount - 1);
-    setCurrentView('dashboard');
+    setShowSetStatus(true);
+    setCurrentView('set-status');
+  };
+
+  const handleBackFromBudget = () => {
+    setShowBudgetSetting(false);
+    setCurrentView('activity-details');
+  };
+
+  const handleBackFromPriority = () => {
+    setShowPrioritySetting(false);
+    setCurrentView('activity-details');
+  };
+
+  const handleBackFromStatus = () => {
+    setShowSetStatus(false);
+    setCurrentView('activity-details');
+  };
+
+  const handleSaveBudget = (activityId, budget) => {
+    // Implement saving logic here (update state or send to backend)
+    // For now, just update selectedActivity and go back
+    setSelectedActivity({ ...selectedActivity, budget });
+    setShowBudgetSetting(false);
+    setCurrentView('activity-details');
+  };
+
+  const handleSavePriority = (activityId, priority) => {
+    // Implement saving logic here (update state or send to backend)
+    setSelectedActivity({ ...selectedActivity, priority });
+    setShowPrioritySetting(false);
+    setCurrentView('activity-details');
+  };
+
+  const handleSaveStatus = (activityId, status) => {
+    setSelectedActivity({ ...selectedActivity, status });
+    setShowSetStatus(false);
+    setCurrentView('activity-details');
   };
 
   const renderDashboard = () => (
@@ -184,12 +224,16 @@ const SeDashboard = ({ onBack }) => {
           <span className="detail-value">{selectedActivity.title}</span>
         </div>
         <div className="detail-row">
+          <span className="detail-label">Province:</span>
+          <span className="detail-value">{selectedActivity.province || ""}</span>
+        </div>
+        <div className="detail-row">
           <span className="detail-label">District:</span>
           <span className="detail-value">{selectedActivity.district}</span>
         </div>
         <div className="detail-row">
-          <span className="detail-label">Broad Activity Area:</span>
-          <span className="detail-value">{selectedActivity.area}</span>
+          <span className="detail-label">Zone:</span>
+          <span className="detail-value">{selectedActivity.zone || ""}</span>
         </div>
         <div className="detail-row">
           <span className="detail-label">Sub Component:</span>
@@ -199,6 +243,24 @@ const SeDashboard = ({ onBack }) => {
           <span className="detail-label">Component:</span>
           <span className="detail-value">{selectedActivity.component}</span>
         </div>
+        {selectedActivity.budget && (
+          <div className="detail-row">
+            <span className="detail-label">Budget:</span>
+            <span className="detail-value">Rs. {parseFloat(selectedActivity.budget).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
+          </div>
+        )}
+        {selectedActivity.priority && (
+          <div className="detail-row">
+            <span className="detail-label">Priority:</span>
+            <span className="detail-value">{selectedActivity.priority} / 10</span>
+          </div>
+        )}
+        {selectedActivity.status && (
+          <div className="detail-row">
+            <span className="detail-label">Status:</span>
+            <span className="detail-value">{selectedActivity.status}</span>
+          </div>
+        )}
       </div>
       
       {selectedActivity.status === 'assigned' ? (
@@ -261,6 +323,28 @@ const SeDashboard = ({ onBack }) => {
     <div>
       {currentView === 'dashboard' && renderDashboard()}
       {currentView === 'activity-details' && renderActivityDetails()}
+      {currentView === 'set-budget' && (
+        <SeBudgetSetting
+          activity={selectedActivity}
+          onBack={handleBackFromBudget}
+          currentBudget={currentBudget}
+          onSaveBudget={handleSaveBudget}
+        />
+      )}
+      {currentView === 'set-priority' && (
+        <SePrioritySettings
+          activity={selectedActivity}
+          onBack={handleBackFromPriority}
+          onSavePriority={handleSavePriority}
+        />
+      )}
+      {currentView === 'set-status' && (
+        <SeSetStatus
+          activity={selectedActivity}
+          onBack={handleBackFromStatus}
+          onSaveStatus={handleSaveStatus}
+        />
+      )}
       {currentView === 'my-activities' && renderActivitiesList(myActivities, 'My Activities')}
       {currentView === 'inspected-activities' && renderActivitiesList(
         myActivities.filter(a => a.status === 'inspected'), 

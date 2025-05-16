@@ -211,3 +211,11 @@ margin-bottom: 20px;
 .btn-cancel-revisions:hover{
   background-color: #c0392b;
 }
+
+.sidebar-logout-btn.provincial-director {
+  background: #E7AE28;
+  color: #fff;
+}
+.sidebar-logout-btn.provincial-director:hover {
+  background: #c99924;
+}

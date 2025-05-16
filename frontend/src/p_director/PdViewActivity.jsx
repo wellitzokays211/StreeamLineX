@@ -94,10 +94,6 @@ const PdViewActivity = ({ activity, onBack }) => {
               <td style={tdValueStyle}>{activity?.district || 'Kandy'}</td>
             </tr>
             <tr>
-              <td style={tdLabelStyle}>Broad Activity Area:</td>
-              <td style={tdValueStyle}>{activity?.area || 'Construct School Buildings'}</td>
-            </tr>
-            <tr>
               <td style={tdLabelStyle}>Sub Component:</td>
               <td style={tdValueStyle}>{activity?.subComponent || 'Strengthening education administration and management at provincial, and zonal levels'}</td>
             </tr>

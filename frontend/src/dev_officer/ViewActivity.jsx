@@ -59,11 +59,6 @@ const ViewActivity = ({ activity, onBack }) => {
           </div>
 
           <div className="activity-detail-row">
-            <div className="detail-label">Broad Activity Area:</div>
-            <div className="detail-value">{activity.broadActivityArea || "Construct School Buildings"}</div>
-          </div>
-
-          <div className="activity-detail-row">
             <div className="detail-label">Sub Component:</div>
             <div className="detail-value">{activity.subComponent || "Strengthening education administration and management at provincial, and zonal levels"}</div>
           </div>
