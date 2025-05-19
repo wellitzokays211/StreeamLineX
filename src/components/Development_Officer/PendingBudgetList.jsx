@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import autoTable from 'jspdf-autotable';
 import axios from 'axios';
 import { jsPDF } from 'jspdf';
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button as MuiButton } from '@mui/material';
 
 const PendingBudgetList = () => {
   const [allocations, setAllocations] = useState([]);
@@ -12,6 +13,7 @@ const PendingBudgetList = () => {
   const [error, setError] = useState(null);
   const [filterZone, setFilterZone] = useState('All');
   const [sortBy, setSortBy] = useState('priority');
+  const [openPrintDialog, setOpenPrintDialog] = useState(false);
 
   useEffect(() => {
     fetchAllData();
@@ -74,11 +76,11 @@ const PendingBudgetList = () => {
       format: 'a4'
     });
 
-    // Title
+    // Title of the PDF
     doc.setFontSize(20);
     doc.setTextColor(33, 150, 243);
     doc.setFont('helvetica', 'bold');
-    doc.text('Annual Budget Plan', 148, 20, { align: 'center' });
+    doc.text('Annual Development Plan', 148, 20, { align: 'center' });
 
     // Date
     doc.setFontSize(12);
@@ -92,11 +94,11 @@ const PendingBudgetList = () => {
     });
     doc.text(`Generated on: ${dateString}`, 148, 28, { align: 'center' });
 
-    // Budget Summary
+    // Budget Overview of the PDF
     doc.setFontSize(14);
     doc.setTextColor(33, 150, 243);
     doc.setFont('helvetica', 'bold');
-    doc.text('Budget Summary', 20, 40);
+    doc.text('Budget Overview', 20, 40);
 
     doc.setFontSize(12);
     doc.setFont('helvetica', 'normal');
@@ -215,6 +217,55 @@ const PendingBudgetList = () => {
     doc.save(`Annual_Development_Plan_${today.getFullYear()}.pdf`);
   };
 
+  const generateExcel = () => {
+    if (pdApprovedActivities.length === 0) {
+      alert('No PD Approved activities to generate report');
+      return;
+    }
+    const header = [
+      'No', 'Description', 'Zone', 'District', 'Component', 'Subcomponent', 'Amount (LKR)', 'Priority'
+    ];
+    const rows = pdApprovedActivities.map((activity, index) => [
+      index + 1,
+      activity.description,
+      activity.zone,
+      activity.district,
+      activity.component || 'N/A',
+      activity.subcomponent || 'N/A',
+      parseFloat(activity.allocated_amount).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}),
+      activity.priority
+    ]);
+    let csvContent = '';
+    csvContent += header.join(',') + '\n';
+    rows.forEach(row => {
+      csvContent += row.map(cell => `"${cell}"`).join(',') + '\n';
+    });
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', `Annual_Development_Plan_${new Date().getFullYear()}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
+  const handlePrintClick = () => {
+    setOpenPrintDialog(true);
+  };
+  const handleClosePrintDialog = () => {
+    setOpenPrintDialog(false);
+  };
+  const handlePrintPDF = () => {
+    setOpenPrintDialog(false);
+    generatePDF();
+  };
+  const handlePrintExcel = () => {
+    setOpenPrintDialog(false);
+    generateExcel();
+  };
+
   if (loading) return <div className="loading">Loading budget allocations...</div>;
   if (error) return <div className="error">Error: {error}</div>;
 
@@ -261,19 +312,23 @@ const PendingBudgetList = () => {
         <div className="summary-card purple-card">
           <h3>PD Approved</h3>
           <p>LKR {totalPDApproved.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</p>
-         
         </div>
-         <button 
-            className="download-btn pdf-btn"
-            onClick={generatePDF}
-            disabled={pdApprovedActivities.length === 0}
-          >
-            <i className="fas fa-file-pdf"></i> Generate Annual Budget Report
-          </button>
       </div>
 
       <div className="allocations-section">
-        <h3>All Allocations</h3>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
+          <h3 style={{ margin: 0 }}>All Allocations</h3>
+          <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
+            <button 
+              className="download-btn pdf-btn small-btn"
+              onClick={handlePrintClick}
+              disabled={pdApprovedActivities.length === 0}
+              style={{ fontSize: '0.95rem', padding: '6px 14px' }}
+            >
+              <i className="fas fa-file-pdf"></i> Download Annual Development Plan
+            </button>
+          </div>
+        </div>
         <div className="table-container">
           <table className="allocations-table">
             <thead>
@@ -304,7 +359,8 @@ const PendingBudgetList = () => {
                     </span>
                   </td>
                   <td>
-                    <span className={`status-badge ${alloc.status.toLowerCase()}`}>
+                    <span className={`status-badge ${alloc.status.toLowerCase()}`}
+                      style={alloc.status === 'PDRejected' ? { backgroundColor: '#ff4d4f', color: '#fff' } : {}}>
                       {alloc.status}
                     </span>
                   </td>
@@ -316,6 +372,22 @@ const PendingBudgetList = () => {
           </table>
         </div>
       </div>
+
+      {/* Print Option Dialog */}
+      <Dialog open={openPrintDialog} onClose={handleClosePrintDialog}>
+        <DialogTitle>Select Download Format</DialogTitle>
+        <DialogContent>
+          <MuiButton onClick={handlePrintPDF} variant="contained" color="primary" sx={{ m: 1 }} fullWidth>
+            PDF
+          </MuiButton>
+          <MuiButton onClick={handlePrintExcel} variant="contained" color="success" sx={{ m: 1 }} fullWidth>
+            Excel
+          </MuiButton>
+        </DialogContent>
+        <DialogActions>
+          <MuiButton onClick={handleClosePrintDialog} color="inherit">Cancel</MuiButton>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };

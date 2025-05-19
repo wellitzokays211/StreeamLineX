@@ -15,21 +15,4 @@
   /* Optional styling for sidebar */
 }
 
-/* Main content area */
-.main-content {
-  margin-left: 0; /* Default for small screens */
-  padding: 40px;
-}
 
-/* Apply margin-left of 250px for larger screens */
-@media (min-width: 992px) {
-  .main-content {
-    margin-left: 250px;
-  }
-}
-@media (max-width: 800px) and (min-width: 679px){
-  .main-content {
-    margin-left: 100px;
-    margin-top: 50px;
-  }
-}

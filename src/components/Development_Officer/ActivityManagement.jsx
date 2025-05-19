@@ -261,7 +261,8 @@ const ActivityManagement = () => {
     <Box sx={{ 
       padding: 3,
       backgroundColor: '#f5f7fa',
-      minHeight: '100vh'
+      minHeight: '100vh',
+      ml: '250px',
     }}>
       <Paper 
         elevation={3} 

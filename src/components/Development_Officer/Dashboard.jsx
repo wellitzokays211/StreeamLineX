@@ -222,8 +222,8 @@ const Dashboard = () => {
   };
 
   return (
-    <Container fluid className="p-4 bg-light min-vh-100">
-      <h1 className="display-5 fw-bold text-center mb-4" style={{ color: colors.primary }}>
+    <Container fluid className="p-4 bg-light min-vh-100" style={{ marginLeft: 250, maxWidth: 1200 }}>
+      <h1 className="display-5 fw-bold text-center mb-4" style={{ color: colors.primary  }}>
         Budget Management Dashboard
       </h1>
       

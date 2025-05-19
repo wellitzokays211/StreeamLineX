@@ -97,7 +97,7 @@ const DevOfficerAuth = () => {
   };
 
   return (
-    <Box sx={{ marginLeft:'-500px',display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
+    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
       <Paper elevation={3} sx={{ width: 400, p: 4 }}>
         <Tabs value={activeTab} onChange={handleTabChange} centered>
           <Tab label="Register" />

@@ -148,7 +148,7 @@ const MyActivity = () => {
   }
 
   return (
-    <Box sx={{ padding: 3 }}>
+    <Box sx={{ padding: 3, ml: '250px', maxWidth: '1200px' }}>
       <Typography variant="h4" gutterBottom>
         Accepted Activities
       </Typography>

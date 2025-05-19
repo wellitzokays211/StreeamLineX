@@ -140,10 +140,10 @@ const Sidebar2 = () => {
       <Drawer
         className="sidebar2"
         sx={{
-          width: 280,
+          width: 250,
           flexShrink: 0,
           '& .MuiDrawer-paper': {
-            width: 280,
+            width: 250,
             boxSizing: 'border-box',
             overflowX: 'hidden',
           },
@@ -232,7 +232,7 @@ const Sidebar2 = () => {
       </Drawer>
 
       {/* Main content placeholder */}
-      <Box sx={{ marginLeft: isMobile ? 0 : 280, overflow: 'hidden' }} />
+      <Box sx={{ marginLeft: isMobile ? 0 : 250, overflow: 'hidden' }} />
 
       {/* Edit Modal */}
       <Modal open={modalOpen} onClose={handleModalClose}>

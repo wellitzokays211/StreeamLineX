@@ -39,7 +39,7 @@ const RoleSelection = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="landing-flex-col min-vh-100">
+    <div className="landing-flex-col min-vh-100" >
       <header className="border-bottom bg-white">
         <Container className="d-flex align-items-center justify-content-between py-3">
           <div className="d-flex align-items-center gap-2">
@@ -57,7 +57,7 @@ const RoleSelection = () => {
             <div className="text-center mb-5">
               <div className="badge bg-primary bg-opacity-10 text-primary mb-2 px-3 py-2">Select Your Role</div>
               <h2 className="fw-bold mb-3">Welcome to StreamLineX!</h2>
-              <p className="text-muted mx-auto" style={{maxWidth: 600}}>
+              <p className="text-muted mx-auto" >
                 Please select your role to continue
               </p>
             </div>

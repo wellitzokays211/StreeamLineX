@@ -185,10 +185,10 @@ const Sidebar3 = () => {
 
       <Drawer
         sx={{
-          width: 280,
+          width: 250,
           flexShrink: 0,
           '& .MuiDrawer-paper': {
-            width: 280,
+            width: 250,
             boxSizing: 'border-box',
             backgroundColor: colors.primaryDark,
             color: colors.textPrimary,

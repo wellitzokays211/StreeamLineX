@@ -52,7 +52,7 @@ const App = () => {
   };
 
   // Calculate main content width based on sidebar presence
-  const mainContentClass = getSidebar() ? 'col-md-9' : 'col-md-12';
+  const mainContentClass ='col-md-12';
 
   return (
     <div className="container-fluid">

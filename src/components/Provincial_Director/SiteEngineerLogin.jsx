@@ -45,7 +45,7 @@ const SiteAuth = () => {
   };
 
   return (
-    <Container style={{ marginLeft: '250px' }} maxWidth="sm">
+    <Container maxWidth="sm">
       <Paper elevation={3} sx={{ mt: 8, p: 4 }}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <Tabs value={activeTab} onChange={handleTabChange} centered>

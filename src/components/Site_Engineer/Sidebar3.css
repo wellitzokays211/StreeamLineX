@@ -1,6 +1,6 @@
 /* Sidebar3 Styles */
 .sidebar3 {
-  width: 280px;
+  width: 250px;
   background: linear-gradient(to bottom, #4a148c, #7b1fa2);
   color: white;
   height: 100vh;
@@ -13,7 +13,7 @@
 }
 
 .sidebar3 .MuiDrawer-paper {
-  width: 280px !important;
+  width: 250px;
   background: linear-gradient(to bottom, #4a148c, #7b1fa2) !important;
   color: white !important;
   box-sizing: border-box;
@@ -26,7 +26,7 @@
 }
 
 .sidebar3-content {
-  margin-left: 280px;
+  margin-left: 250px;
   padding: 20px;
   transition: margin-left 0.3s ease-in-out;
 }
