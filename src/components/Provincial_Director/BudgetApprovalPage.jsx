@@ -126,7 +126,7 @@ const BudgetApprovalPage = () => {
   );
 
   return (
-    <div className="container py-4">
+    <div className="container py-4" style={{ marginLeft: '250px', maxWidth: '1200px' }}>
       <Card className="mb-4">
         <Card.Header className="bg-primary text-white">
           <h2 className="mb-0">Budget Approval System</h2>

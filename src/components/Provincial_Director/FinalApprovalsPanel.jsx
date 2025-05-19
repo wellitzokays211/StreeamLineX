@@ -348,13 +348,6 @@ const FinalApprovalsPanel = () => {
           <p>LKR {totalPDApproved.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</p>
          
         </div>
-         <button 
-            className="download-btn pdf-btn"
-            onClick={generatePDF}
-            disabled={pdApprovedActivities.length === 0}
-          >
-            <i className="fas fa-file-pdf"></i> Generate Report
-          </button>
       </div>
 
       <div className="allocations-section">

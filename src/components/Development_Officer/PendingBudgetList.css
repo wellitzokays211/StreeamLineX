@@ -138,6 +138,9 @@
 .status-badge.pdapproved {
   background-color: #FF9800;
 }
+.status-badge.pdrejected {
+  background-color: #b21414;
+}
 
 .status-badge.finalapproved {
   background-color: #4CAF50;

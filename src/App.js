@@ -25,7 +25,7 @@ import Sidebar from './components/Responsible_Person/Sidebar';
 import Sidebar2 from './components/Development_Officer/Sidebar2';
 import Sidebar3 from './components/Site_Engineer/Sidebar3';
 import Sidebar4 from './components/Provincial_Director/Sidebar4';
-import SiteAuth from './components/Provincial_Director/SiteEngineerLogin';
+import SiteAuth from './components/Provincial_Director/ProvincialDirectorLogin';
 import SiteEngineerLogin from './components/Site_Engineer/SiteEngineerLogin';
 import LandingPage from './LandingPage';
 

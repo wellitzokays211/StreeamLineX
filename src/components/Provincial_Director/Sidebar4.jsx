@@ -207,9 +207,7 @@ const Sidebar4 = () => {
         </Box>
       </Drawer>
 
-      <Box className="sidebar4-content" sx={{ marginLeft: isMobile ? 0 : 250, transition: 'margin 0.3s', overflow: 'hidden' }}>
-        {/* Main content goes here */}
-      </Box>
+
     </Box>
   );
 };
