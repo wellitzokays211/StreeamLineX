@@ -11,3 +11,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+html, body, #root, .App, * {
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif !important;
+  letter-spacing: 0.01em;
+}
+
+h1, h2, h3, h4, h5, h6, .fw-bold, .fw-semibold {
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.01em;
+}
