@@ -1,16 +1,4 @@
 /* Sidebar2 Styles for permanent and temporary state */
-.sidebar2 {
-  width: 500px; /* Default width for larger screens */
-  background: linear-gradient(to bottom, #3c64c9, #3c64c9); /* Dark blue to medium purple-blue gradient */
-  color: white;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding: 20px;
-  transition: transform 0.3s ease-in-out;
-  overflow: hidden; /* Hide all overflow */
-}
 
 .sidebar2, .sidebar2 * {
   font-family: 'Inter', 'Segoe UI', Arial, sans-serif !important;
