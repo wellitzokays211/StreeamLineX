@@ -1,5 +1,5 @@
 import './ActivityList.css';
-import Sidebar from './Sidebar';
+import Sidebar from './ResPersonSidebar';
 
 import React, { useEffect, useState } from 'react';
 

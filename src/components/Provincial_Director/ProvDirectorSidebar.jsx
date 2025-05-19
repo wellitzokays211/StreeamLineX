@@ -1,5 +1,3 @@
-import './Sidebar4.css';
-
 import {
   AppBar,
   Avatar,

@@ -8,7 +8,7 @@
 /* Temporary sidebar2 for mobile view */
 .sidebar2 .MuiDrawer-paper {
   width: 240px !important;
-  background: linear-gradient(to bottom, #3c64c9, #3c64c9) !important;
+  background: linear-gradient(to bottom, #0D47A1, #0D47A1) !important;
   color: white !important;
   box-sizing: border-box;
   overflow: hidden !important; /* Hide scrollbars and overflowing content */
@@ -16,7 +16,7 @@
 
 /* App Bar (mobile header) styling */
 .sidebar2 .MuiAppBar-root {
-  background-color: #303f9f !important;
+  background-color: #0D47A1 !important;
   overflow: hidden !important;
 }
 
@@ -31,7 +31,7 @@
 /* Avatar styling */
 .sidebar2-avatar {
   background-color: #e8eaf6 !important;
-  color: #303f9f !important;
+  color: #0D47A1 !important;
   overflow: hidden;
 }
 

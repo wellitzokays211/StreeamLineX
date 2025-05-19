@@ -1,5 +1,3 @@
-import './Sidebar2.css';
-
 import {
   AddCircle as AddCircleIcon,
   BusinessCenter as BusinessCenterIcon,
@@ -161,7 +159,7 @@ const Sidebar2 = () => {
             flexDirection: 'column',
             alignItems: 'center',
             padding: '20px 10px',
-            backgroundColor: 'rgba(0,0,0,0.2)',
+            
             overflowX: 'hidden',
           }}
         >

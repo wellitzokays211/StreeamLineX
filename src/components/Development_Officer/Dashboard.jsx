@@ -223,54 +223,52 @@ const Dashboard = () => {
 
   return (
     <Container fluid className="p-4 bg-light min-vh-100" style={{ marginLeft: 250, maxWidth: 1200 }}>
-      <h1 className="display-5 fw-bold text-center mb-4" style={{ color: colors.primary  }}>
+      <h1 className="display-5 fw-bold mb-4" style={{ color: "#0D47A1", textAlign: "left", fontSize: "2rem" }}>
         Budget Management Dashboard
       </h1>
-      
       {/* Quick Stats Row */}
       <Row className="mb-4">
         <Col md={3}>
-          <Card className="text-center h-100 shadow-sm">
+          <Card className="text-left h-100 shadow-sm" style={{ borderLeft: '5px solid #0D47A1', borderRadius: 12 }}>
             <Card.Body>
-              <h6 className="text-muted">Total Budget</h6>
-              <h3 className="fw-bold">{formatCurrency(currentBudgetAmount)}</h3>
+              <h6 className="text-muted" style={{ textAlign: "left", fontSize: "1rem" }}>Total Budget</h6>
+              <h3 className="fw-bold" style={{ textAlign: "left", fontSize: "1.25rem", color: '#0D47A1' }}>{formatCurrency(currentBudgetAmount)}</h3>
             </Card.Body>
           </Card>
         </Col>
         <Col md={3}>
-          <Card className="text-center h-100 shadow-sm">
+          <Card className="text-left h-100 shadow-sm" style={{ borderLeft: '5px solid #0D47A1', borderRadius: 12 }}>
             <Card.Body>
-              <h6 className="text-muted">Allocated Budget</h6>
-              <h3 className="fw-bold">{formatCurrency(totalAllocated)}</h3>
+              <h6 className="text-muted" style={{ textAlign: "left", fontSize: "1rem" }}>Allocated Budget</h6>
+              <h3 className="fw-bold" style={{ textAlign: "left", fontSize: "1.25rem", color: '#0D47A1' }}>{formatCurrency(totalAllocated)}</h3>
             </Card.Body>
           </Card>
         </Col>
         <Col md={3}>
-          <Card className="text-center h-100 shadow-sm">
+          <Card className="text-left h-100 shadow-sm" style={{ borderLeft: '5px solid #0D47A1', borderRadius: 12 }}>
             <Card.Body>
-              <h6 className="text-muted">Remaining Budget</h6>
-              <h3 className={`fw-bold text-${getBudgetStyle()}`}>
+              <h6 className="text-muted" style={{ textAlign: "left", fontSize: "1rem" }}>Remaining Budget</h6>
+              <h3 className={`fw-bold text-${getBudgetStyle()}`} style={{ textAlign: "left", fontSize: "1.25rem", color: '#0D47A1' }}>
                 {formatCurrency(remainingBudget)}
               </h3>
             </Card.Body>
           </Card>
         </Col>
         <Col md={3}>
-          <Card className="text-center h-100 shadow-sm">
+          <Card className="text-left h-100 shadow-sm" style={{ borderLeft: '5px solid #0D47A1', borderRadius: 12 }}>
             <Card.Body>
-              <h6 className="text-muted">Total Activities</h6>
-              <h3 className="fw-bold">{filteredActivities.length}</h3>
+              <h6 className="text-muted" style={{ textAlign: "left", fontSize: "1rem" }}>Total Activities</h6>
+              <h3 className="fw-bold" style={{ textAlign: "left", fontSize: "1.25rem", color: '#0D47A1' }}>{filteredActivities.length}</h3>
             </Card.Body>
           </Card>
         </Col>
       </Row>
-      
       <Row className="mb-4">
         {/* Budget Management Card */}
         <Col lg={6} className="mb-4">
-          <Card className="shadow-sm">
-            <Card.Header className="bg-primary text-white">
-              <h5 className="mb-0">Budget Management</h5>
+          <Card className="shadow-sm" style={{ borderRadius: 12 }}>
+            <Card.Header style={{ backgroundColor: "#0D47A1", color: "#fff", textAlign: "left", fontSize: "1.1rem", borderTopLeftRadius: 12, borderTopRightRadius: 12 }}>
+              <h5 className="mb-0" style={{ fontSize: "1.1rem" }}>Budget Management</h5>
             </Card.Header>
             <Card.Body>
               <Form>
@@ -290,10 +288,9 @@ const Dashboard = () => {
                   </Button>
                 </InputGroup>
               </Form>
-              
               {budgets.length > 0 && (
                 <div className="mt-4">
-                  <h6 className="fw-bold mb-3">Current Budget</h6>
+                  <h6 className="fw-bold mb-3" style={{ textAlign: 'left' }}>Current Budget</h6>
                   <Table striped hover>
                     <thead className="table-light">
                       <tr>
@@ -305,12 +302,8 @@ const Dashboard = () => {
                     <tbody>
                       <tr>
                         <td>{formatCurrency(budgets[0].budget)}</td>
-                        <td>
-                          {new Date(budgets[0].created_at).toLocaleDateString()}
-                        </td>
-                        <td>
-                          {new Date(budgets[0].updated_at).toLocaleDateString()}
-                        </td>
+                        <td>{new Date(budgets[0].created_at).toLocaleDateString()}</td>
+                        <td>{new Date(budgets[0].updated_at).toLocaleDateString()}</td>
                       </tr>
                     </tbody>
                   </Table>
@@ -319,15 +312,14 @@ const Dashboard = () => {
             </Card.Body>
           </Card>
         </Col>
-        
         {/* Charts & Analytics */}
         <Col lg={6} className="mb-4">
-          <Card className="shadow-sm h-100">
-            <Card.Header className="bg-info text-white">
-              <h5 className="mb-0">Budget Analytics</h5>
+          <Card className="shadow-sm h-100" style={{ borderRadius: 12 }}>
+            <Card.Header style={{ backgroundColor: "#0D47A1", color: "#fff", textAlign: "left", fontSize: "1.1rem", borderTopLeftRadius: 12, borderTopRightRadius: 12 }}>
+              <h5 className="mb-0" style={{ fontSize: "1.1rem" }}>Budget Analytics</h5>
             </Card.Header>
             <Card.Body>
-              <h6 className="fw-bold mb-3">Budget Utilization</h6>
+              <h6 className="fw-bold mb-3" style={{ textAlign: 'left' }}>Budget Utilization</h6>
               <ProgressBar className="mb-4" style={{ height: '25px' }}>
                 <ProgressBar 
                   variant="success" 
@@ -336,10 +328,9 @@ const Dashboard = () => {
                   label={`${budgetUsagePercentage.toFixed(1)}%`} 
                 />
               </ProgressBar>
-              
               <Row>
                 <Col md={6}>
-                  <h6 className="fw-bold mb-2">Priority Distribution</h6>
+                  <h6 className="fw-bold mb-2" style={{ textAlign: 'left' }}>Priority Distribution</h6>
                   <div style={{ height: '200px' }}>
                     <ResponsiveContainer width="100%" height="100%">
                       <PieChart>
@@ -364,7 +355,7 @@ const Dashboard = () => {
                   </div>
                 </Col>
                 <Col md={6}>
-                  <h6 className="fw-bold mb-2">Zone Budget Allocation</h6>
+                  <h6 className="fw-bold mb-2" style={{ textAlign: 'left' }}>Zone Budget Allocation</h6>
                   <div style={{ height: '200px' }}>
                     <ResponsiveContainer width="100%" height="100%">
                       <BarChart
@@ -375,7 +366,7 @@ const Dashboard = () => {
                         <XAxis type="number" />
                         <YAxis dataKey="name" type="category" width={80} />
                         <Tooltip formatter={(value) => [formatCurrency(value), 'Budget']} />
-                        <Bar dataKey="value" fill={colors.primary} />
+                        <Bar dataKey="value" fill="#0D47A1" />
                       </BarChart>
                     </ResponsiveContainer>
                   </div>
@@ -385,13 +376,12 @@ const Dashboard = () => {
           </Card>
         </Col>
       </Row>
-      
       {/* Priority Activities Card */}
-      <Card className="shadow-sm mb-4">
-        <Card.Header className="bg-success text-white">
+      <Card className="shadow-sm mb-4" style={{ borderRadius: 12 }}>
+        <Card.Header style={{ backgroundColor: "#0D47A1", color: "#fff", textAlign: "left" }}>
           <Row className="align-items-center">
             <Col>
-              <h5 className="mb-0">Priority Activities</h5>
+              <h5 className="mb-0" style={{ textAlign: 'left' }}>Priority Activities</h5>
             </Col>
             <Col md={3}>
               <Form.Control
@@ -465,17 +455,16 @@ const Dashboard = () => {
           )}
         </Card.Body>
       </Card>
-      
       {/* Allocated Budget Summary */}
       {selectedActivities.length > 0 && (
-        <Card className="shadow-sm">
-          <Card.Header className="bg-warning text-dark">
-            <h5 className="mb-0">Allocated Budget Summary</h5>
+        <Card className="shadow-sm" style={{ borderRadius: 12 }}>
+          <Card.Header style={{ backgroundColor: '#FFC107', color: '#212529', textAlign: 'left', borderTopLeftRadius: 12, borderTopRightRadius: 12 }}>
+            <h5 className="mb-0" style={{ textAlign: 'left' }}>Allocated Budget Summary</h5>
           </Card.Header>
           <Card.Body>
             <Row>
               <Col md={6}>
-                <h6 className="fw-bold mb-3">Selected Activities ({selectedActivities.length})</h6>
+                <h6 className="fw-bold mb-3" style={{ textAlign: 'left' }}>Selected Activities ({selectedActivities.length})</h6>
                 <ListGroup className="mb-3">
                   {selectedActivities.map((activity) => (
                     <ListGroup.Item 
@@ -495,12 +484,10 @@ const Dashboard = () => {
                   ))}
                 </ListGroup>
               </Col>
-              
               <Col md={6}>
-                <Card className="bg-light">
+                <Card className="bg-light" style={{ borderRadius: 8 }}>
                   <Card.Body>
-                    <h6 className="fw-bold mb-3">Budget Allocation Summary</h6>
-                    
+                    <h6 className="fw-bold mb-3" style={{ textAlign: 'left' }}>Budget Allocation Summary</h6>
                     <Table borderless size="sm">
                       <tbody>
                         <tr>
@@ -519,7 +506,6 @@ const Dashboard = () => {
                         </tr>
                       </tbody>
                     </Table>
-                    
                     <ProgressBar className="mt-3">
                       <ProgressBar 
                         variant="success" 
@@ -534,10 +520,9 @@ const Dashboard = () => {
                         />
                       )}
                     </ProgressBar>
-                    <div className="text-center mt-2">
+                    <div className="text-left mt-2">
                       <small>{budgetUsagePercentage.toFixed(1)}% of budget allocated</small>
                     </div>
-                    
                     {remainingBudget < 0 && (
                       <Alert variant="danger" className="mt-3">
                         Warning: Budget exceeded by {formatCurrency(Math.abs(remainingBudget))}
@@ -545,7 +530,6 @@ const Dashboard = () => {
                     )}
                   </Card.Body>
                 </Card>
-                
                 <div className="d-grid gap-2 mt-3">
                   <Button 
                     variant="success" 
@@ -556,13 +540,11 @@ const Dashboard = () => {
                     {isFinalizing ? 'Finalizing...' : 'Finalize Budget Allocation'}
                   </Button>
                 </div>
-
                 {finalizeSuccess && (
                   <Alert variant="success" className="mt-3">
                     Budget allocation finalized successfully!
                   </Alert>
                 )}
-
                 {finalizeError && (
                   <Alert variant="danger" className="mt-3">
                     {finalizeError}
