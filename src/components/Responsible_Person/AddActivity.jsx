@@ -26,13 +26,34 @@ const DeleteIcon = () => (
 
 // Location data with only Central Province and 5 districts
 const locationData = {
-  "Central": {
-    "Kandy": ["Kandy City", "Peradeniya", "Kundasale", "Gampola", "Akurana"],
-    "Matale": ["Matale Town", "Dambulla", "Galewela", "Rattota", "Naula"],
-    "Nuwara Eliya": ["Nuwara Eliya Town", "Hatton", "Talawakele", "Ambagamuwa", "Hanguranketha"],
-    "Kegalle": ["Kegalle Town", "Mawanella", "Warakapola", "Rambukkana", "Deraniyagala"],
-    "Ratnapura": ["Ratnapura Town", "Balangoda", "Eheliyagoda", "Kuruwita", "Embilipitiya"]
-  }
+  "Central": { 
+  "Kandy": [
+    "Kandy",
+    "Yatinuwara",
+    "Medadumbara",
+    "Udunuwara",
+    "Doluwa",
+    "Pathadumbara",
+    "Minipe"
+  ],
+  "Matale": [
+    "Matale",
+    "Ukuwela",
+    "Rattota",
+    "Dambulla",
+    "Naula",
+    "Wilgamuwa",
+    "Ambanganga Korale"
+  ],
+  "Nuwara Eliya": [
+    "Nuwara Eliya",
+    "Walapane",
+    "Hanguranketha",
+    "Kotmale",
+    "Lindula (Talawakele)",
+    "Hatton - Dickoya"
+  ]
+}
 };
 
 const AddActivity = () => {
