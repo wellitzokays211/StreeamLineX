@@ -1,6 +1,6 @@
 import { Box, Button, CircularProgress, Container, Paper, Tab, Tabs, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
-
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const SiteAuth = () => {
@@ -14,34 +14,35 @@ const SiteAuth = () => {
     setActiveTab(newValue);
     setError('');
   };
-
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError('');
 
-    // Hardcoded admin credentials
-    const ADMIN_CREDENTIALS = {
-      email: 'admin',
-      password: 'admin123'
-    };
+    try {
+      // Connect to backend login API
+      const response = await axios.post('http://localhost:4000/api/admin/login', {
+        email: loginData.email,
+        password: loginData.password
+      });
 
-    // Simulate API call delay
-    setTimeout(() => {
-      if (loginData.email === ADMIN_CREDENTIALS.email && loginData.password === ADMIN_CREDENTIALS.password) {
-        // Simulate successful login
-        localStorage.setItem('token', 'admin-token');
+      if (response.data.success) {
+        // Save token and user info
+        localStorage.setItem('token', response.data.token);
         localStorage.setItem('user', JSON.stringify({
-          name: 'Admin User',
-          email: 'admin',
+          email: loginData.email,
           role: 'admin'
         }));
         navigate('/final');
       } else {
-        setError('Invalid username or password');
+        setError(response.data.message || 'Invalid username or password');
       }
+    } catch (error) {
+      console.error('Login error:', error);
+      setError('Server error. Please try again later.');
+    } finally {
       setLoading(false);
-    }, 1000);
+    }
   };
 
   return (
@@ -58,11 +59,11 @@ const SiteAuth = () => {
             Provincial Director
           </Typography>
           <Box component="form" onSubmit={handleLogin} sx={{ mt: 2 }}>
-            <TextField
-              margin="normal"
+            <TextField              margin="normal"
               required
               fullWidth
-              label="Username"
+              label="Email"
+              type="email"
               autoFocus
               value={loginData.email}
               onChange={(e) => setLoginData({...loginData, email: e.target.value})}

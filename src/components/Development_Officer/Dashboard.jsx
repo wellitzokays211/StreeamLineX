@@ -271,10 +271,11 @@ const Dashboard = () => {
               <h5 className="mb-0" style={{ fontSize: "1.1rem" }}>Budget Management</h5>
             </Card.Header>
             <Card.Body>
-              <Form>                <InputGroup className="mb-3">
+              <Form>
+                <InputGroup className="mb-3">
                   <InputGroup.Text>LKR</InputGroup.Text>
                   <Form.Control
-                    type="text"
+                    type="number"
                     value={budget}
                     onChange={(e) => setBudget(e.target.value)}
                     placeholder="Enter budget amount"
