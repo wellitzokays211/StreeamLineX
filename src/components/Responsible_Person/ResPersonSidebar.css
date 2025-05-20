@@ -8,7 +8,7 @@ body {
 /* Sidebar Styles for permanent and temporary state */
 .sidebar {
   width: 500px; /* Default width for larger screens */
-  background: linear-gradient(to bottom, #1b5e20, #2e7d32); /* Dark green to medium green gradient */
+  background: linear-gradient(to bottom, #1b5e20, #1b5e20); 
   color: white;
   height: 100vh;
   position: fixed;

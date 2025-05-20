@@ -198,7 +198,7 @@ const ActivityList = () => {
           ) : (
             <div className="activities-grid">
               {filteredActivities.map((activity) => (
-                <div key={activity.id} className="activity-card">
+                <div key={activity.id} className="activity-card" style={{ borderLeft: '6px solid #1b5e20' }}>
                   <div className="activity-header">
                     <h3>Activity #{activity.id}</h3>
                     <span className={`status-badge ${activity.status.toLowerCase().replace(/\s+/g, '-')}`}>

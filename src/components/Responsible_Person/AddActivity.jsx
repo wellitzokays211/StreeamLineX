@@ -1,6 +1,7 @@
 import './AddActivity.css';
 
 import React, { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
 
@@ -34,7 +35,7 @@ const locationData = {
   }
 };
 
-const AddActivity = ({ onBack }) => {
+const AddActivity = () => {
   const [activityData, setActivityData] = useState({
     description: '',
     province: '',
@@ -47,6 +48,7 @@ const AddActivity = ({ onBack }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
   const fileInputRef = useRef(null);
+  const navigate = useNavigate();
 
   const handleInputChange = (field, value) => {
     if (field === 'province') {
@@ -96,65 +98,69 @@ const AddActivity = ({ onBack }) => {
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  setError('');
+    e.preventDefault();
+    setError('');
 
-  if (!activityData.description || !activityData.province || 
-      !activityData.district || !activityData.zone) {
-    setError('Please fill all required fields');
-    return;
-  }
-
-  setIsSubmitting(true);
-
-  try {
-    const formData = new FormData();
-    formData.append('description', activityData.description);
-    formData.append('province', activityData.province);
-    formData.append('district', activityData.district);
-    formData.append('zone', activityData.zone);
-    formData.append('status', 'Pending');
-
-    images.forEach(image => {
-      formData.append('images', image.file);
-    });
-
-    const response = await axios.post(
-      'http://localhost:4000/api/activity/add',
-      formData,
-      {
-        headers: {
-          token: localStorage.getItem('token'),
-          'Content-Type': 'multipart/form-data'
-        }
-      }
-    );
-
-    if (response.data.success) {
-      alert('Activity added successfully!');
-      
-      // ✅ Reset all fields
-      setActivityData({
-        description: '',
-        province: '',
-        district: '',
-        zone: '',
-        status: 'Pending'
-      });
-      // ✅ Clear image previews and files
-      images.forEach(image => URL.revokeObjectURL(image.preview)); // Cleanup memory
-      setImages([]);
-    } else {
-      setError(response.data.message || 'Failed to add activity');
+    if (!activityData.description || !activityData.province || 
+        !activityData.district || !activityData.zone) {
+      setError('Please fill all required fields');
+      return;
     }
-  } catch (err) {
-    console.error('Error submitting activity:', err);
-    setError(err.response?.data?.message || 'Failed to add activity. Please try again.');
-  } finally {
-    setIsSubmitting(false);
-  }
-};
 
+    setIsSubmitting(true);
+
+    try {
+      const formData = new FormData();
+      formData.append('description', activityData.description);
+      formData.append('province', activityData.province);
+      formData.append('district', activityData.district);
+      formData.append('zone', activityData.zone);
+      formData.append('status', 'Pending');
+
+      images.forEach(image => {
+        formData.append('images', image.file);
+      });
+
+      const response = await axios.post(
+        'http://localhost:4000/api/activity/add',
+        formData,
+        {
+          headers: {
+            token: localStorage.getItem('token'),
+            'Content-Type': 'multipart/form-data'
+          }
+        }
+      );
+
+      if (response.data.success) {
+        alert('Activity added successfully!');
+        
+        // ✅ Reset all fields
+        setActivityData({
+          description: '',
+          province: '',
+          district: '',
+          zone: '',
+          status: 'Pending'
+        });
+        // ✅ Clear image previews and files
+        images.forEach(image => URL.revokeObjectURL(image.preview)); // Cleanup memory
+        setImages([]);
+        navigate('/list-activity'); // Navigate after successful add
+      } else {
+        setError(response.data.message || 'Failed to add activity');
+      }
+    } catch (err) {
+      console.error('Error submitting activity:', err);
+      setError(err.response?.data?.message || 'Failed to add activity. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleCancel = () => {
+    navigate('/list-activity');
+  };
 
   const getAvailableDistricts = () => {
     if (!activityData.province) return [];
@@ -168,8 +174,7 @@ const AddActivity = ({ onBack }) => {
 
   return (
     <div className="content">
-      <button onClick={onBack} className="back-button">Back</button>
-      
+      {/* Removed the back button as requested */}
       <h1>Add New Activity</h1>
       
       {error && <div className="error-message">{error}</div>}
@@ -300,7 +305,7 @@ const AddActivity = ({ onBack }) => {
           <button 
             type="button" 
             className="cancel-button" 
-            onClick={onBack}
+            onClick={handleCancel}
             disabled={isSubmitting}
           >
             Cancel

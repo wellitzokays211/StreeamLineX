@@ -174,7 +174,7 @@ const Sidebar2 = () => {
 
           <Chip
             className="sidebar2-chip"
-            label={loading ? 'Loading...' : officer?.officer_name}
+            label={loading ? 'Loading...' : officer?.officer_name || ''}
             variant="outlined"
             size="small"
             onClick={handleEditClick}

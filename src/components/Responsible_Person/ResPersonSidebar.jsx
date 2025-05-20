@@ -167,7 +167,7 @@ const Sidebar = () => {
             flexDirection: 'column',
             alignItems: 'center',
             padding: '20px 10px',
-            backgroundColor: 'rgba(0,0,0,0.2)',
+            backgroundColor: 'rgba(0,0,0,0)',
           }}
         >
           <Avatar

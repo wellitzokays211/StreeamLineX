@@ -1,4 +1,4 @@
-import './PendingBudgetList.css';
+import './PendingBudgetList.dashboard.css';
 
 import React, { useEffect, useState } from 'react';
 
@@ -272,7 +272,6 @@ const PendingBudgetList = () => {
   return (
     <div className="budget-container">
       <h2 className="page-title">Budget Allocation</h2>
-
       <div className="controls">
         <div className="filter-control">
           <label>Filter by Zone:</label>
@@ -299,7 +298,6 @@ const PendingBudgetList = () => {
           </select>
         </div>
       </div>
-
       <div className="summary-cards">
         <div className="summary-card blue-card">
           <h3>Total Budget</h3>
@@ -314,7 +312,6 @@ const PendingBudgetList = () => {
           <p>LKR {totalPDApproved.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</p>
         </div>
       </div>
-
       <div className="allocations-section">
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
           <h3 style={{ margin: 0 }}>All Allocations</h3>

@@ -176,7 +176,7 @@ const Sidebar4 = () => {
                     <ListItemIcon sx={{ color: 'rgba(255,255,255,0.8)', minWidth: '40px' }}>
                       {item.icon}
                     </ListItemIcon>
-                    <ListItemText primary={item.text} />
+                    <ListItemText primary={item.text} sx={{ color: '#fff' }} />
                   </ListItem>
                   {index < menuItems.length - 1 && (
                     <Divider className="sidebar4-divider" sx={{ my: 0.5, mx: 2 }} />
@@ -201,7 +201,7 @@ const Sidebar4 = () => {
               <ListItemIcon sx={{ color: 'rgba(255,255,255,0.8)', minWidth: '40px' }}>
                 <ExitToAppIcon />
               </ListItemIcon>
-              <ListItemText primary="Log Out" />
+              <ListItemText primary="Log Out" sx={{ color: '#fff' }} />
             </ListItem>
           </Box>
         </Box>

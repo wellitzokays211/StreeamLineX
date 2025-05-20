@@ -42,15 +42,35 @@ const DevOfficerAuth = () => {
       ...prev,
       [name]: value
     }));
-  };
-
-  const validateRegisterForm = () => {
+  };  const validateRegisterForm = () => {
     const newErrors = {};
-    if (!formData.name) newErrors.name = 'Name is required';
+      // Name validation
+    if (!formData.name) {
+      newErrors.name = 'Name is required';
+    } else if (formData.name.length > 50) {
+      newErrors.name = 'Name cannot exceed 50 characters';
+    } else if (!/^[A-Za-z][A-Za-z\s'\-\.]*[A-Za-z]$/.test(formData.name)) {
+      newErrors.name = 'Name should start and end with a letter and contain only letters, spaces, hyphens, apostrophes, or periods';
+    } else if (/[\s'\-\.]{2,}/.test(formData.name)) {
+      newErrors.name = 'Name should not contain consecutive spaces or symbols';
+    }
+    
     if (!formData.email || !/^\S+@\S+\.\S+$/.test(formData.email)) newErrors.email = 'Valid email is required';
     if (!formData.password || formData.password.length < 8) newErrors.password = 'Password must be at least 8 characters';
-    if (!formData.tel_num || formData.tel_num.length !== 10) newErrors.tel_num = 'Valid 10-digit phone number required';
-  if (!formData.nic || !/^\d{12}$/.test(formData.nic)) newErrors.nic = 'NIC must be exactly 12 digits';
+    
+    // Phone number validation: Must be exactly 10 digits and start with 0
+    if (!formData.tel_num) {
+      newErrors.tel_num = 'Phone number is required';
+    } else if (!formData.tel_num.match(/^0\d{9}$/)) {
+      newErrors.tel_num = 'Phone number must be 10 digits and start with 0';
+    }
+    
+    // NIC validation: Old (9 digits + V/v) or New (12 digits)
+    if (!formData.nic) {
+      newErrors.nic = 'NIC is required';
+    } else if (!/^\d{9}[Vv]$/.test(formData.nic) && !/^\d{12}$/.test(formData.nic)) {
+      newErrors.nic = 'Please enter a valid NIC number (e.g., 880123456V or 199012345678).';
+    }
     if (!formData.secretKey || formData.secretKey !== '1234') newErrors.secretKey = 'Valid secret key is required';
     
     setErrors(newErrors);
@@ -112,16 +132,27 @@ const DevOfficerAuth = () => {
 
         {activeTab === 0 ? (
           // Register Form
-          <Box component="form" onSubmit={handleRegister} sx={{ mt: 3 }}>
-            <TextField
+          <Box component="form" onSubmit={handleRegister} sx={{ mt: 3 }}>            <TextField
               fullWidth
               label="Full Name"
               name="name"
               value={formData.name}
-              onChange={handleRegisterChange}
+              onChange={(e) => {                const value = e.target.value;
+                // Only allow 50 characters max
+                if (value.length <= 50) {
+                  // Allow only letters, spaces, hyphens, apostrophes, and periods
+                  if (!value || /^[A-Za-z]?[A-Za-z\s'\-\.]*[A-Za-z]?$/.test(value)) {
+                    // Prevent consecutive spaces or symbols
+                    if (!/[\s'\-\.]{2,}/.test(value)) {
+                      setFormData(prev => ({ ...prev, name: value }));
+                    }
+                  }
+                }
+              }}
               error={!!errors.name}
               helperText={errors.name}
               margin="normal"
+              inputProps={{ maxLength: 50 }}
             />
             <TextField
               fullWidth
@@ -144,23 +175,34 @@ const DevOfficerAuth = () => {
               error={!!errors.password}
               helperText={errors.password}
               margin="normal"
-            />
-            <TextField
+            />            <TextField
               fullWidth
               label="Phone Number"
               name="tel_num"
               value={formData.tel_num}
-              onChange={handleRegisterChange}
+              onChange={(e) => {
+                // Allow only digits and limit to 10 characters
+                const value = e.target.value.replace(/[^\d]/g, '');
+                if (value.length <= 10) {
+                  setFormData(prev => ({ ...prev, tel_num: value }));
+                }
+              }}
               error={!!errors.tel_num}
               helperText={errors.tel_num}
               margin="normal"
+              inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
             />
             <TextField
               fullWidth
               label="NIC Number"
               name="nic"
               value={formData.nic}
-              onChange={handleRegisterChange}
+              onChange={e => {
+                // Allow only digits and V/v, and limit length to 12
+                let val = e.target.value.replace(/[^\dVv]/g, '');
+                if (val.length > 12) val = val.slice(0, 12);
+                setFormData(prev => ({ ...prev, nic: val }));
+              }}
               error={!!errors.nic}
               helperText={errors.nic}
               margin="normal"

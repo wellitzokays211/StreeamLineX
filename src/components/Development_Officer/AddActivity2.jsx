@@ -1,7 +1,7 @@
 import './AddActivity2.css';
 
 import React, { useEffect, useRef, useState } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 // Icons
@@ -25,13 +25,34 @@ const DeleteIcon = () => (
 
 // Location data with only Central Province and 5 districts
 const locationData = {
-  "Central": {
-    "Kandy": ["Kandy City", "Peradeniya", "Kundasale", "Gampola", "Akurana"],
-    "Matale": ["Matale Town", "Dambulla", "Galewela", "Rattota", "Naula"],
-    "Nuwara Eliya": ["Nuwara Eliya Town", "Hatton", "Talawakele", "Ambagamuwa", "Hanguranketha"],
-    "Kegalle": ["Kegalle Town", "Mawanella", "Warakapola", "Rambukkana", "Deraniyagala"],
-    "Ratnapura": ["Ratnapura Town", "Balangoda", "Eheliyagoda", "Kuruwita", "Embilipitiya"]
-  }
+  "Central": { 
+  "Kandy": [
+    "Kandy",
+    "Yatinuwara",
+    "Medadumbara",
+    "Udunuwara",
+    "Doluwa",
+    "Pathadumbara",
+    "Minipe"
+  ],
+  "Matale": [
+    "Matale",
+    "Ukuwela",
+    "Rattota",
+    "Dambulla",
+    "Naula",
+    "Wilgamuwa",
+    "Ambanganga Korale"
+  ],
+  "Nuwara Eliya": [
+    "Nuwara Eliya",
+    "Walapane",
+    "Hanguranketha",
+    "Kotmale",
+    "Lindula (Talawakele)",
+    "Hatton - Dickoya"
+  ]
+}
 };
 
 // Component and subcomponent data
@@ -65,6 +86,7 @@ const componentData = {
 };
 
 const AddActivity2 = ({ onBack }) => {
+  const navigate = useNavigate();
   const [activityData, setActivityData] = useState({
     description: '',
     province: '',
@@ -228,6 +250,7 @@ const AddActivity2 = ({ onBack }) => {
         // Clear image previews and files
         images.forEach(image => URL.revokeObjectURL(image.preview));
         setImages([]);
+        navigate('/priority-list');
       } else {
         setError(response.data.message || 'Failed to add activity');
       }
@@ -256,8 +279,6 @@ const AddActivity2 = ({ onBack }) => {
 
   return (
     <div className="content">
-      <button onClick={onBack} className="back-button">Back</button>
-      
       <h1>Add New Activity</h1>
       
       {error && <div className="error-message">{error}</div>}
@@ -451,7 +472,7 @@ const AddActivity2 = ({ onBack }) => {
           <button 
             type="button" 
             className="cancel-button" 
-            onClick={onBack}
+            onClick={() => navigate('/priority-list')}
             disabled={isSubmitting}
           >
             Cancel

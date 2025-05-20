@@ -40,6 +40,7 @@ import InfoIcon from '@mui/icons-material/Info';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
 import axios from 'axios';
+import './ActivityManagement.css';
 
 const componentData = {
   "Strengthen Equity in Education: Equitable Learning Opportunities for All Children": [
@@ -262,42 +263,11 @@ const ActivityManagement = () => {
   }
 
   return (
-    <Box sx={{ 
-      padding: 3,
-      backgroundColor: '#f5f7fa',
-      minHeight: '100vh',
-      ml: '250px',
-    }}>
-      <Paper 
-        elevation={3} 
-        sx={{ 
-          p: 3, 
-          mb: 3, 
-          borderRadius: 2,
-          backgroundColor: theme.palette.background.paper,
-          backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9))'
-        }}
-      >
-        <Typography 
-          variant="h4" 
-          gutterBottom 
-          sx={{ 
-            fontWeight: 'bold',
-            color: theme.palette.primary.main,  
-            borderBottom: `2px solid ${theme.palette.primary.main}`,
-            pb: 1
-          }}
-        >
-          Activity List
-        </Typography>
-        
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
-          <Box>
-            <Typography variant="subtitle1" color="textSecondary">
-              Total Activities: {activities.length}
-            </Typography>
-          </Box>
-          
+    <div className="activity-management-container">
+      <div className="activity-management-header">
+        <h1>Activity List</h1>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
+          <span style={{ color: '#555', fontWeight: 500 }}>Total Activities: {activities.length}</span>
           <FormControl sx={{ minWidth: 200 }}>
             <InputLabel>Filter by Status</InputLabel>
             <Select
@@ -313,20 +283,19 @@ const ActivityManagement = () => {
               ))}
             </Select>
           </FormControl>
-        </Box>
-      </Paper>
-
+        </div>
+      </div>
       <Grid container spacing={3}>
         {getFilteredActivities().map((activity) => (
           <Grid item xs={12} sm={6} md={4} key={activity.id}>
-            <Card 
-              sx={{ 
-                height: '100%', 
-                display: 'flex', 
+            <Card className="activity-card"
+              sx={{
+                height: '100%',
+                display: 'flex',
                 flexDirection: 'column',
+                borderLeft: `5px solid ${getCardBorderColor(activity.status)}`,
                 borderRadius: 2,
                 transition: 'transform 0.2s, box-shadow 0.2s',
-                borderLeft: `5px solid ${getCardBorderColor(activity.status)}`,
                 '&:hover': {
                   transform: 'translateY(-5px)',
                   boxShadow: '0 10px 20px rgba(0,0,0,0.1)'
@@ -778,7 +747,7 @@ const ActivityManagement = () => {
           </Button>
         </DialogActions>
       </Dialog>
-    </Box>
+    </div>
   );
 };
 

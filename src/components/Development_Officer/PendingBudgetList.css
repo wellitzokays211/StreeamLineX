@@ -97,6 +97,22 @@
   font-size: 14px;
 }
 
+.allocations-table {
+  font-size: 0.95rem;
+}
+
+@media (max-width: 900px) {
+  .allocations-table {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .allocations-table {
+    font-size: 0.85rem;
+  }
+}
+
 .allocations-table th, .final-approvals-table th {
   background-color: #2196F3;
   color: white;
