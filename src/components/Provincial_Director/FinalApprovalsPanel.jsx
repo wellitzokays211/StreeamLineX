@@ -252,8 +252,17 @@ const FinalApprovalsPanel = () => {
 
   return (
     <div className="budget-container">
-      <h2 className="page-title">Budget Allocation Management</h2>
-
+      <h2
+        className="page-title"
+        style={{
+          color: '#f2b100', 
+          fontSize: '2', // smaller font size
+          textAlign: 'left', // left align
+        }}
+      >
+        Budget Allocation Management
+      </h2>
+      
       <div className="controls">
         <div className="search-control">
           <input

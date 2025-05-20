@@ -1,3 +1,4 @@
+import './SiteEngSidebar.css';
 import {
   AppBar,
   Avatar,
@@ -32,17 +33,7 @@ import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import MenuIcon from '@mui/icons-material/Menu';
 import axios from 'axios';
 
-const colors = {
-  primaryDark: '#3a0063',
-  primaryMain: '#4a0080',
-  primaryLight: '#7c43bd',
-  textPrimary: '#ffffff',
-  textSecondary: 'rgba(255,255,255,0.7)',
-  divider: 'rgba(255,255,255,0.15)',
-  hover: 'rgba(255,255,255,0.1)',
-  buttonBg: '#6200ea',
-  buttonHover: '#7c4dff',
-};
+const mainColor = '#5a0a73';
 
 const Sidebar3 = () => {
   const theme = useTheme();
@@ -52,7 +43,6 @@ const Sidebar3 = () => {
   const [engineer, setEngineer] = useState(null);
   const [profileDialogOpen, setProfileDialogOpen] = useState(false);
   const navigate = useNavigate();
-
   const [form, setForm] = useState({
     engineer_name: '',
     email: '',
@@ -125,206 +115,149 @@ const Sidebar3 = () => {
   ];
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box>
       {isMobile && (
-        <AppBar position="fixed" sx={{ backgroundColor: colors.primaryDark, zIndex: theme.zIndex.drawer + 1 }}>
+        <AppBar position="sticky" sx={{ backgroundColor: mainColor }}>
           <Toolbar>
-            <IconButton color="inherit" edge="start" onClick={toggleDrawer} aria-label="menu" sx={{ mr: 2 }}>
+            <IconButton color="inherit" edge="start" onClick={toggleDrawer}>
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" sx={{ fontWeight: 'bold', flexGrow: 1 }}>
-              Site Engineer Portal
-            </Typography>
+            <Typography variant="h6">Site Engineer</Typography>
           </Toolbar>
         </AppBar>
       )}
 
       <Drawer
+        className="sidebar3"
         sx={{
           width: 250,
           flexShrink: 0,
           '& .MuiDrawer-paper': {
             width: 250,
             boxSizing: 'border-box',
-            backgroundColor: colors.primaryDark,
-            color: colors.textPrimary,
-            borderRight: `1px solid ${colors.divider}`,
+            backgroundColor: mainColor,
+            color: '#fff',
+            overflowX: 'hidden',
           },
         }}
-        variant={isMobile ? 'temporary' : 'persistent'}
+        variant={isMobile ? 'temporary' : 'permanent'}
         anchor="left"
         open={isMobile ? open : true}
         onClose={toggleDrawer}
         ModalProps={{ keepMounted: true }}
       >
-        {isMobile && <Toolbar />}
-
         <Box
+          className="sidebar3-header"
           sx={{
-            p: 3,
-            textAlign: 'center',
-            background: `linear-gradient(to bottom, ${colors.primaryMain}, ${colors.primaryDark})`,
-            borderBottom: `1px solid ${colors.divider}`,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            padding: '20px 10px',
+            overflowX: 'hidden',
           }}
         >
-          <Box
-            sx={{
-              width: 80,
-              height: 80,
-              mb: 2,
-              mx: 'auto',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderRadius: '50%',
-              backgroundColor: '#237a3b',
-            }}
-          >
-            <BusinessCenterIcon sx={{ fontSize: 40, color: '#fff' }} />
-          </Box>
+          <Avatar sx={{ width: 70, height: 70, mb: 1, bgcolor: '#7c43bd' }}>
+            <BusinessCenterIcon sx={{ fontSize: 40 }} />
+          </Avatar>
 
-          {loading ? (
-            <Typography variant="body2" sx={{ fontStyle: 'italic' }}>
-              Loading profile...
-            </Typography>
-          ) : engineer ? (
-            <Box sx={{ mt: 1 }}>
-              <Typography variant="h6" sx={{ fontWeight: 700, fontSize: '1.2rem', color: '#fff', mb: 1 }}>
-                Site Engineer
-              </Typography>
-              <Button
-                variant="outlined"
-                size="medium"
-                startIcon={<EditIcon />}
-                sx={{
-                  color: '#fff',
-                  borderColor: '#fff',
-                  backgroundColor: 'rgba(255,255,255,0.08)',
-                  fontWeight: 600,
-                  fontSize: '0.85rem',
-                  px: 2.0,
-                  py: 0.5,
-                  borderRadius: 999,
-                  textTransform: 'none',
-                  '&:hover': {
-                    borderColor: '#fff',
-                    backgroundColor: 'rgba(255,255,255,0.18)',
-                  },
-                  mb: 1,
-                }}
-                onClick={() => setProfileDialogOpen(true)}
-              >
-                {engineer.engineer_name}
-              </Button>
-            </Box>
-          ) : (
-            <Typography variant="body2" sx={{ color: '#ff9800' }}>
-              No engineer data found
-            </Typography>
-          )}
+          <Typography variant="h6" sx={{ fontWeight: 600, fontSize: '1.2rem' }}>
+            Site Engineer
+          </Typography>
+
+          <Chip
+            className="sidebar3-chip"
+            label={loading ? 'Loading...' : engineer?.engineer_name}
+            variant="outlined"
+            size="small"
+            onClick={() => setProfileDialogOpen(true)}
+            icon={<EditIcon sx={{ color: '#fff !important', fontSize: 14 }} />}
+            sx={{
+              color: '#fff',
+              mt: 1,
+              fontSize: '0.85rem',
+              cursor: 'pointer',
+              borderColor: '#fff',
+              '& .MuiChip-label': { fontWeight: 500 },
+              '& .MuiChip-icon': { color: '#fff !important', fontSize: 14 },
+              overflowX: 'hidden',
+              background: 'rgba(255,255,255,0.08)',
+              '&:hover': { background: 'rgba(255,255,255,0.18)' },
+            }}
+          />
         </Box>
 
-        <List sx={{ py: 2 }}>
+        <Box
+          className="sidebar3-content-container"
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            height: 'calc(100% - 170px)',
+            overflowX: 'hidden',
+          }}
+        >
+          <Box className="sidebar3-menu-container" sx={{ overflow: 'auto', mt: 2, overflowX: 'hidden' }}>
+            <List>
+              {menuItems.map((item, index) => (
+                <React.Fragment key={item.text}>
+                  <ListItem button component={Link} to={item.path} sx={{ mx: 1 }}>
+                    <ListItemIcon sx={{ color: 'rgba(255, 255, 255, 0.8)', minWidth: '40px' }}>
+                      {item.icon}
+                    </ListItemIcon>
+                    <ListItemText sx={{ color: 'rgba(255,255,255,0.8)', minWidth: '40px' }} primary={item.text} />
+                  </ListItem>
+                  {index < menuItems.length - 1 && (
+                    <Divider className="sidebar3-divider" sx={{ my: 0.5, mx: 2, borderColor: 'rgba(255,255,255,0.15)' }} />
+                  )}
+                </React.Fragment>
+              ))}
+            </List>
+          </Box>
 
-          {menuItems.map((item) => (
-            <ListItem
-              key={item.text}
-              button
-              component={Link}
-              to={item.path}
-              sx={{
-                borderRadius: '0 20px 20px 0',
-                mx: 1,
-                mb: 0.5,
-                pl: 2,
-                py: 1,
-                '&:hover': {
-                  backgroundColor: colors.hover,
-                },
-                '&.active': {
-                  backgroundColor: colors.primaryMain,
-                  '&:hover': {
-                    backgroundColor: colors.primaryMain,
-                  },
-                },
-              }}
-            >
-              <ListItemIcon sx={{ color: colors.primaryLight, minWidth: '40px' }}>{item.icon}</ListItemIcon>
-              <ListItemText
-                primary={item.text}
-                primaryTypographyProps={{
-                  fontSize: '0.95rem',
-                  fontWeight: 500,
-                }}
-              />
+          <Box className="sidebar3-footer" sx={{ mb: 2, overflowX: 'hidden' }}>
+            <Divider className="sidebar3-divider" sx={{ my: 1, mx: 2, borderColor: 'rgba(255,255,255,0.15)' }} />
+            <ListItem button onClick={handleLogout} sx={{ mx: 1 }}>
+              <ListItemIcon sx={{ color: 'rgba(255,255,255,0.8)', minWidth: '40px' }}>
+                <ExitToAppIcon />
+              </ListItemIcon>
+              <ListItemText primary="Log Out" />
             </ListItem>
-          ))}
-        </List>
-
-        <Box sx={{ position: 'sticky', bottom: 0, mt: 'auto', backgroundColor: colors.primaryDark }}>
-          <Divider sx={{ my: 1, mx: 2, borderColor: colors.divider }} />
-          <ListItem
-            button
-            onClick={handleLogout}
-            sx={{
-              mx: 1,
-              mb: 2,
-              borderRadius: '4px',
-              backgroundColor: 'rgba(255,255,255,0.03)',
-              '&:hover': {
-                backgroundColor: 'rgba(255,255,255,0.08)',
-              },
-            }}
-          >
-            <ListItemIcon sx={{ color: '#f44336', minWidth: '40px' }}>
-              <ExitToAppIcon />
-            </ListItemIcon>
-            <ListItemText
-              primary="Log Out"
-              primaryTypographyProps={{
-                fontWeight: 500,
-              }}
-            />
-          </ListItem>
+          </Box>
         </Box>
       </Drawer>
 
-      {/* Profile Edit Dialog */}
+      {/* Main content placeholder */}
+      <Box sx={{ marginLeft: isMobile ? 0 : 250, overflow: 'hidden' }} />
+
+      {/* Edit Profile Dialog */}
       <Dialog open={profileDialogOpen} onClose={() => setProfileDialogOpen(false)} fullWidth maxWidth="sm">
-        <DialogTitle>Edit Profile</DialogTitle>
-        <DialogContent dividers>
+        <DialogTitle sx={{ fontWeight: 600 }}>Update Engineer Details</DialogTitle>
+        <DialogContent dividers sx={{ bgcolor: '#fafafa' }}>
           <TextField
+            fullWidth
             label="Name"
             name="engineer_name"
             value={form.engineer_name}
             onChange={handleInputChange}
-            fullWidth
             margin="normal"
           />
           <TextField
+            fullWidth
             label="Email"
             name="email"
             value={form.email}
             onChange={handleInputChange}
-            fullWidth
             margin="normal"
           />
           <TextField
+            fullWidth
             label="Tel Number"
             name="tel_num"
             value={form.tel_num}
             onChange={handleInputChange}
-            fullWidth
             margin="normal"
           />
-          <TextField
-            label="Specialization"
-            name="specialization"
-            value={form.specialization}
-            onChange={handleInputChange}
-            fullWidth
-            margin="normal"
-          />
+      
         </DialogContent>
         <DialogActions>
           <Button
@@ -332,8 +265,7 @@ const Sidebar3 = () => {
               setForm({
                 engineer_name: engineer.engineer_name,
                 email: engineer.email,
-                tel_num: engineer.tel_num,
-                specialization: engineer.specialization,
+                tel_num: engineer.tel_num
               });
               setProfileDialogOpen(false);
             }}
@@ -346,6 +278,7 @@ const Sidebar3 = () => {
               handleUpdate();
               setProfileDialogOpen(false);
             }}
+            sx={{ backgroundColor: mainColor, color: '#fff', '&:hover': { backgroundColor: '#7c43bd' } }}
           >
             Save Changes
           </Button>

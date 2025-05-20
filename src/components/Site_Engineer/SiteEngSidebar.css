@@ -1,20 +1,9 @@
 /* Sidebar3 Styles */
-.sidebar3 {
-  width: 250px;
-  background: linear-gradient(to bottom, #4a148c, #7b1fa2);
-  color: white;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  transition: transform 0.3s ease-in-out;
- 
-  overflow: hidden;
-}
+
 
 .sidebar3 .MuiDrawer-paper {
   width: 250px;
-  background: linear-gradient(to bottom, #4a148c, #7b1fa2) !important;
+  background: linear-gradient(to bottom, #732196, #732196) !important;
   color: white !important;
   box-sizing: border-box;
    
@@ -58,7 +47,6 @@
   flex-direction: column;
   align-items: center;
   padding: 20px 10px;
-  background-color: rgba(0,0,0,0.2);
 }
 
 .sidebar3-menu-container {

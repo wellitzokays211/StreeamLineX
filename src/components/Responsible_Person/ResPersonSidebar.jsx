@@ -1,3 +1,4 @@
+import './ResPersonSidebar.css';
 import {
   AppBar,
   Avatar,

@@ -35,7 +35,8 @@ const MyActivity = () => {
   const [priority, setPriority] = useState('');
 
   const priorityOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  const acceptedActivities = allActivities.filter(activity => activity.status === 'Accepted'|| 'FinalApproved' || 'Not Started' || 'PDApproved' || 'PDRejected');
+  // Only show activities with status exactly 'Accepted' (case-insensitive)
+  const acceptedActivities = allActivities.filter(activity => (activity.status && activity.status.toLowerCase() === 'accepted'));
   const token = localStorage.getItem('token');
 
   useEffect(() => {

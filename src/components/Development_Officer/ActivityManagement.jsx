@@ -81,6 +81,7 @@ const ActivityManagement = () => {
   const [selectedActivity, setSelectedActivity] = useState(null);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [rejectionReason, setRejectionReason] = useState('');
+  const [editedDescription, setEditedDescription] = useState('');
   const [selectedComponent, setSelectedComponent] = useState('');
   const [selectedSubcomponent, setSelectedSubcomponent] = useState('');
   const [filterStatus, setFilterStatus] = useState('');
@@ -146,6 +147,7 @@ const ActivityManagement = () => {
     setSelectedComponent(activity.component || '');
     setSelectedSubcomponent(activity.subcomponent || '');
     setRejectionReason(activity.rejection_reason || '');
+    setEditedDescription(activity.description || '');
     setDialogOpen(true);
   };
 
@@ -157,6 +159,7 @@ const ActivityManagement = () => {
     setSelectedComponent('');
     setSelectedSubcomponent('');
     setRejectionReason('');
+    setEditedDescription('');
   };
 
  const handleStatusUpdate = async () => {
@@ -169,7 +172,8 @@ const ActivityManagement = () => {
       assigned_engineer_id: selectedStatus === 'Approved' ? selectedEngineer : null,
       rejectionReason: selectedStatus === 'Rejected' ? rejectionReason : null, // Changed to match backend
       component: selectedComponent || null,
-      subcomponent: selectedSubcomponent || null
+      subcomponent: selectedSubcomponent || null,
+      description: editedDescription || null
     };
 
     const response = await axios.put('http://localhost:4000/api/activity/update', payload);
@@ -504,6 +508,20 @@ const ActivityManagement = () => {
                   >
                     Update Status
                   </Button>
+                ) : activity.status === 'Rejected' ? (
+                  <Button
+                    variant="contained"
+                    size="small"
+                    color="secondary"
+                    onClick={() => {
+                      setSelectedActivity(activity);
+                      setSelectedEngineer('');
+                      setDialogOpen('reassign');
+                    }}
+                    sx={{ borderRadius: 4, boxShadow: 2 }}
+                  >
+                    Reassign
+                  </Button>
                 ) : (
                   <Chip
                     label={getStatusMessage(activity.status)}
@@ -520,7 +538,7 @@ const ActivityManagement = () => {
 
       {/* Status Update Dialog */}
       <Dialog 
-        open={dialogOpen} 
+        open={dialogOpen === true} 
         onClose={handleDialogClose} 
         maxWidth="sm" 
         fullWidth
@@ -535,6 +553,17 @@ const ActivityManagement = () => {
           </Typography>
         </DialogTitle>
         <DialogContent dividers>
+          <TextField
+            fullWidth
+            margin="normal"
+            label="Activity Description"
+            value={editedDescription}
+            onChange={(e) => setEditedDescription(e.target.value)}
+            multiline
+            rows={2}
+            required
+            InputProps={{ sx: { borderRadius: 1 } }}
+          />
           <FormControl fullWidth margin="normal">
             <InputLabel>Status</InputLabel>
             <Select
@@ -555,6 +584,8 @@ const ActivityManagement = () => {
               ))}
             </Select>
           </FormControl>
+
+          
 
           <FormControl fullWidth margin="normal">
             <InputLabel>Component</InputLabel>
@@ -663,6 +694,87 @@ const ActivityManagement = () => {
             }}
           >
             Update Status
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* Reassign Dialog */}
+      <Dialog
+        open={dialogOpen === 'reassign'}
+        onClose={handleDialogClose}
+        maxWidth="xs"
+        fullWidth
+        PaperProps={{ elevation: 5, sx: { borderRadius: 2 } }}
+      >
+        <DialogTitle sx={{ bgcolor: theme.palette.secondary.main, color: 'white' }}>
+          <Typography variant="h6">
+            Reassign Activity #{selectedActivity?.id}
+          </Typography>
+        </DialogTitle>
+        <DialogContent dividers>
+          <FormControl fullWidth margin="normal">
+            <InputLabel>Assign Engineer</InputLabel>
+            <Select
+              value={selectedEngineer}
+              onChange={(e) => setSelectedEngineer(e.target.value)}
+              label="Assign Engineer"
+              required
+            >
+              <MenuItem value="">Select Engineer</MenuItem>
+              {engineers.map((engineer) => (
+                <MenuItem key={engineer.engineer_id} value={engineer.engineer_id}>
+                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <Avatar 
+                      sx={{ 
+                        width: 24, 
+                        height: 24, 
+                        mr: 1,
+                        bgcolor: theme.palette.primary.main,
+                        fontSize: '0.75rem' 
+                      }}
+                    >
+                      {engineer.engineer_name.split(' ').map(name => name[0]).join('').toUpperCase()}
+                    </Avatar>
+                    {engineer.engineer_name} ({engineer.specialization})
+                  </Box>
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </DialogContent>
+        <DialogActions sx={{ p: 2, bgcolor: theme.palette.grey[50] }}>
+          <Button 
+            onClick={handleDialogClose}
+            variant="outlined"
+            color="inherit"
+            sx={{ borderRadius: 4 }}
+          >
+            Cancel
+          </Button>
+          <Button 
+            onClick={async () => {
+              if (!selectedActivity || !selectedEngineer) return;
+              try {
+                const payload = {
+                  id: selectedActivity.id,
+                  status: 'Approved',
+                  assigned_engineer_id: selectedEngineer,
+                };
+                const response = await axios.put('http://localhost:4000/api/activity/update', payload);
+                if (response.data.success) {
+                  fetchData();
+                  handleDialogClose();
+                }
+              } catch (err) {
+                setError(err.response?.data?.message || 'Reassign failed');
+              }
+            }}
+            color="secondary"
+            variant="contained"
+            disabled={!selectedEngineer}
+            sx={{ borderRadius: 4, boxShadow: 2 }}
+          >
+            Confirm Reassign
           </Button>
         </DialogActions>
       </Dialog>

@@ -1,3 +1,5 @@
+import './ProvDirectorSidebar.css';
+
 import {
   AppBar,
   Avatar,
