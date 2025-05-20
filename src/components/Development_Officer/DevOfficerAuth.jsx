@@ -109,7 +109,7 @@ const DevOfficerAuth = () => {
       const response = await axios.post('http://localhost:4000/api/dev_office/login', loginData);
       if (response.data.success) {
         localStorage.setItem('token', response.data.token);
-        navigate('/priority-list'); // Adjust the redirect as needed
+        navigate('/priority-list'); 
       }
     } catch (error) {
       setApiError(error.response?.data?.message || 'Login failed');
